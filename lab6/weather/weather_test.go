@@ -55,9 +55,9 @@ func TestParseResponseInvalid(t *testing.T) {
 
 func TestFormatURL(t *testing.T) {
 	t.Parallel()
-	c := NewClient("8abd33d837cf15654e50ffe4d3cfd60c")
+	c := NewClient("dummyAPIKey")
 	location := "Paris,FR"
-	want := "https://api.openweathermap.org/data/2.5/weather?q=Paris%2CFR&appid=8abd33d837cf15654e50ffe4d3cfd60c"
+	want := "https://api.openweathermap.org/data/2.5/weather?q=Paris%2CFR&appid=dummyAPIKey"
 	got := c.FormatURL(location)
 	if !cmp.Equal(want, got) {
 		t.Error(cmp.Diff(want, got))
@@ -66,9 +66,9 @@ func TestFormatURL(t *testing.T) {
 
 func TestFormatURLSpaces(t *testing.T) {
 	t.Parallel()
-	c := NewClient("8abd33d837cf15654e50ffe4d3cfd60c")
+	c := NewClient("dummyAPIKey")
 	location := "Wagga Wagga,AU"
-	want := "https://api.openweathermap.org/data/2.5/weather?q=Wagga+Wagga%2CAU&appid=8abd33d837cf15654e50ffe4d3cfd60c"
+	want := "https://api.openweathermap.org/data/2.5/weather?q=Wagga+Wagga%2CAU&appid=dummyAPIKey"
 	got := c.FormatURL(location)
 	if !cmp.Equal(want, got) {
 		t.Error(cmp.Diff(want, got))
@@ -105,7 +105,7 @@ func TestGetWeather(t *testing.T) {
 		io.Copy(w, f)
 	}))
 	defer ts.Close()
-	c := NewClient("8abd33d837cf15654e50ffe4d3cfd60c")
+	c := NewClient("dummyAPIKey")
 	c.BaseURL = ts.URL
 	c.HTTPClient = ts.Client()
 	want := Conditions{
