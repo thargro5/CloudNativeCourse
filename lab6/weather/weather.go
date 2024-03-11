@@ -118,7 +118,7 @@ func RunCLI() {
 		os.Exit(1)
 	}
 	location := os.Args[1]
-	key := os.Getenv("OPENWEATHERMAP_API_KEY")
+	key := os.Getenv("8abd33d837cf15654e50ffe4d3cfd60c")
 	if key == "" {
 		fmt.Fprintln(os.Stderr, "Please set the environment variable OPENWEATHERMAP_API_KEY")
 		os.Exit(1)
